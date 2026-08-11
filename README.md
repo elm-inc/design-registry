@@ -64,6 +64,17 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 - **案件で差し替え**: `components/app-sidebar.tsx` のナビ項目・ロゴ・ユーザーメニュー、`AppShell` に渡す `header`
 - ブランド差分の色は `@elm/theme-<brand>` preset で重ねる (骨格には触れない)
 
+## カスタムは owned 層へ (base 更新から守る)
+
+`@elm/base` は今後も更新される。案件で一部をカスタムする際、**managed (上流・`add` で再生成) を直接書き換えるとカスタムが消える**。owned 層に隔離する:
+
+| managed (触らない) | owned (ここにカスタム) |
+|---|---|
+| `globals.css` の base 域・`components/ui/*`・registry 由来 | `app/theme.overrides.css`・ラッパー/案件コンポーネント |
+
+- トークン上書きは `app/theme.overrides.css` に書き、root `layout.tsx` で **`globals.css` の直後に import** (cascade で後勝ち→ base 更新でも維持)
+- 強制の仕組み (rule + PreToolUse ガード + drift CI) は `/shadcn` が配線。詳細: [docs/setup/shadcn.md §5.1](https://github.com/elm-inc/agent-rules/blob/main/docs/setup/shadcn.md)
+
 ## 案件側の使い方 (差分だけ)
 
 ```jsonc
