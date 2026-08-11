@@ -140,14 +140,52 @@
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "theme-dense",
+      "type": "registry:theme",
+      "title": "elm dense (突き合わせて使う管理画面向け)",
+      "description": "base の尺度を管理画面向けに詰めた preset。眺めるのではなく突き合わせて使う画面(一覧・ダッシュボード・照合) では、1 画面に入る行数がそのまま使い勝手になる。本文 13px 起点・比 1.2 で type scale を縮め、余白を絞り、content 幅の上限を外す。色・書体・sidebar 寸法は base のまま。base の後に add して重ねる。",
+      "cssVars": {
+        "theme": {
+          "text-display": "1.75rem",
+          "text-h1": "1.375rem",
+          "text-h2": "1.1875rem",
+          "text-h3": "1.0625rem",
+          "text-h4": "0.9375rem",
+          "text-body": "0.8125rem",
+          "text-small": "0.75rem",
+          "gutter": "1rem",
+          "section-gap": "1rem",
+          "page-max": "none"
+        }
+      },
+      "css": {
+        "@layer base": {
+          "body": {
+            "font-size": "var(--text-body)"
+          }
+        }
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
       "name": "app-shell",
       "type": "registry:component",
       "title": "elm app-shell",
       "description": "house 標準レイアウト骨格 (sidebar + header + content)。Next.js App Router 想定。@elm/base のトークン (--app-sidebar-width / --page-max / --gutter / --section-gap) を使用。案件は AppSidebar のナビ項目と header 内容だけ差し替える。",
-      "registryDependencies": ["sidebar", "separator", "@elm/base"],
+      "registryDependencies": [
+        "sidebar",
+        "separator",
+        "@elm/base"
+      ],
       "files": [
-        { "path": "components/app-shell.tsx", "type": "registry:component" },
-        { "path": "components/app-sidebar.tsx", "type": "registry:component" }
+        {
+          "path": "components/app-shell.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/app-sidebar.tsx",
+          "type": "registry:component"
+        }
       ]
     },
     {
