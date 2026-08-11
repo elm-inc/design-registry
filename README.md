@@ -6,7 +6,7 @@ elm の **UI デザインレギュレーションの単一ソース**。[shadcn 
 - 使い方全体: [agent-rules docs/setup/shadcn.md](https://github.com/elm-inc/agent-rules/blob/main/docs/setup/shadcn.md)
 - 配信 URL (GitHub Pages): `https://elm-inc.github.io/design-registry/r/{name}.json`
 
-> ⚠️ **現状 base は neutral の骨格値**。本番のブランドトークンは `/design-voice` で抽出して差し替える (下記「house-style の作り込み」)。
+> **base の由来**: shadcn/create preset [`b1ZOy0qg4`](https://ui.shadcn.com/create?preset=b1ZOy0qg4) (theme=indigo / baseColor=zinc / radius=default) を `shadcn apply` で OKLCH に解決し、`base.cssVars` (色フルセット + chart/sidebar + radius) に単一ソース化。characterful な typography・layout・motion は **design-voice 層**で足す (下記「house-style の作り込み」)。
 
 ## 構成
 
