@@ -39,9 +39,11 @@ export function AppShell({
           <Separator orientation="vertical" className="mr-2 h-4" />
           {header}
         </header>
-        <main className="mx-auto w-full max-w-[var(--page-max)] flex-1 px-[var(--gutter)] py-[var(--section-gap)]">
+        {/* SidebarInset 自体が <main>。ここを main にすると入れ子になり、
+            ランドマーク構造として不正になる（支援技術のナビゲーションが壊れる） */}
+        <div className="mx-auto w-full max-w-[var(--page-max)] flex-1 px-[var(--gutter)] py-[var(--section-gap)]">
           {children}
-        </main>
+        </div>
       </SidebarInset>
     </SidebarProvider>
   )
