@@ -27,6 +27,7 @@ design-registry/
 | item | type | 役割 |
 |---|---|---|
 | `base` | `registry:theme` (`extends: "none"`) | 定常レギュレーション本体。色 + 型 + 余白 + sidebar 寸法 + 要素既定スタイル (下記) |
+| `app-shell` | `registry:component` | house 標準レイアウト骨格 (sidebar + header + content)。Next.js App Router 想定。base のトークンを使用 |
 | `theme-example` | `registry:theme` | 案件差分 (accent 色等) を base の上に重ねる preset の雛形 |
 
 ### base が定義するレギュレーション (`add @elm/base` で全案件に配布)
@@ -37,9 +38,31 @@ design-registry/
 | **型 (見出し/本文)** | `--text-display/h1..h4/body/small`・`--leading-*`・`--tracking-*` を `@theme` に。`text-h1` 等のユーティリティも生成 |
 | **要素既定** (`css` = `@layer base`) | `h1..h4 / p / small` にトークンを適用。**案件で px 指定しなくても見出し/本文が揃う** |
 | **余白/レイアウト** | `--gutter` (1.5rem)・`--section-gap` (4rem)・`--page-max` (80rem) |
-| **サイドメニュー** | `--sidebar-width` (16rem)・`--sidebar-width-icon` (3rem)・`--sidebar-width-mobile` (18rem)。骨格コンポーネント `@elm/app-shell` は将来追加 |
+| **サイドメニュー** | `--app-sidebar-width` (16rem)・`--app-sidebar-width-icon` (3rem)・`--app-sidebar-width-mobile` (18rem)。骨格は `@elm/app-shell` (下記) が消費 |
 
-`--gutter` 等の layout 値と sidebar 寸法は raw トークン (var 参照)。実レイアウト骨格は今後 `registry:component` (`@elm/app-shell`) で配布予定。**性格 (余白リズムの詰め/抜き・見出しの個性)** は design-voice 層で足す。
+`--gutter` 等の layout 値と sidebar 寸法は raw トークン (var 参照)。sidebar 寸法だけ `--app-sidebar-*` と別名なのは、shadcn の `SidebarProvider` が同名 `--sidebar-width` をインライン上書きするため (app-shell が別名トークンから provider に流し込む)。**性格 (余白リズムの詰め/抜き・見出しの個性)** は design-voice 層で足す。
+
+## レイアウト骨格 `@elm/app-shell` (Next.js App Router)
+
+sidebar + header + content の house 標準骨格。案件は骨格を再実装せず、これを取り込んで**ナビ項目と header 内容だけ**差し替える。
+
+```bash
+pnpm dlx shadcn@latest add @elm/base        # 先に base (トークン) を取り込む
+pnpm dlx shadcn@latest add @elm/app-shell   # sidebar/separator も自動で入る
+```
+
+```tsx
+// app/(app)/layout.tsx — サーバーコンポーネントから使える (AppShell が client 境界を内包)
+import { AppShell } from "@/components/app-shell"
+
+export default function Layout({ children }: { children: React.ReactNode }) {
+  return <AppShell header={<h1>案件名</h1>}>{children}</AppShell>
+}
+```
+
+- **共通で固定**: 構造 (sidebar/header/content)、sidebar 幅 (`--app-sidebar-width`)、content 最大幅 (`--page-max`)、余白 (`--gutter`/`--section-gap`)、collapsible=icon
+- **案件で差し替え**: `components/app-sidebar.tsx` のナビ項目・ロゴ・ユーザーメニュー、`AppShell` に渡す `header`
+- ブランド差分の色は `@elm/theme-<brand>` preset で重ねる (骨格には触れない)
 
 ## 案件側の使い方 (差分だけ)
 

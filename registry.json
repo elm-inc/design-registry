@@ -29,9 +29,9 @@
           "gutter": "1.5rem",
           "section-gap": "4rem",
           "page-max": "80rem",
-          "sidebar-width": "16rem",
-          "sidebar-width-icon": "3rem",
-          "sidebar-width-mobile": "18rem"
+          "app-sidebar-width": "16rem",
+          "app-sidebar-width-icon": "3rem",
+          "app-sidebar-width-mobile": "18rem"
         },
         "light": {
           "background": "oklch(1 0 0)",
@@ -137,6 +137,18 @@
           }
         }
       }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "app-shell",
+      "type": "registry:component",
+      "title": "elm app-shell",
+      "description": "house 標準レイアウト骨格 (sidebar + header + content)。Next.js App Router 想定。@elm/base のトークン (--app-sidebar-width / --page-max / --gutter / --section-gap) を使用。案件は AppSidebar のナビ項目と header 内容だけ差し替える。",
+      "registryDependencies": ["sidebar", "separator", "@elm/base"],
+      "files": [
+        { "path": "components/app-shell.tsx", "type": "registry:component" },
+        { "path": "components/app-sidebar.tsx", "type": "registry:component" }
+      ]
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
