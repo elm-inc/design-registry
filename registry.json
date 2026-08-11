@@ -1,0 +1,76 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "elm-design-registry",
+  "homepage": "https://elm-inc.github.io/design-registry",
+  "items": [
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "base",
+      "type": "registry:theme",
+      "extends": "none",
+      "title": "elm base",
+      "description": "elm の定常デザインレギュレーション。OKLCH の CSS 変数 (light/dark) + radius を単一ソースとして配布する。案件はこれを必ず取り込み、差分だけを theme preset で重ねる。現状は neutral の骨格値 (/design-voice 抽出で本番トークンに差し替える)。",
+      "cssVars": {
+        "light": {
+          "background": "oklch(1 0 0)",
+          "foreground": "oklch(0.145 0 0)",
+          "card": "oklch(1 0 0)",
+          "card-foreground": "oklch(0.145 0 0)",
+          "popover": "oklch(1 0 0)",
+          "popover-foreground": "oklch(0.145 0 0)",
+          "primary": "oklch(0.205 0 0)",
+          "primary-foreground": "oklch(0.985 0 0)",
+          "secondary": "oklch(0.97 0 0)",
+          "secondary-foreground": "oklch(0.205 0 0)",
+          "muted": "oklch(0.97 0 0)",
+          "muted-foreground": "oklch(0.556 0 0)",
+          "accent": "oklch(0.97 0 0)",
+          "accent-foreground": "oklch(0.205 0 0)",
+          "destructive": "oklch(0.577 0.245 27.325)",
+          "border": "oklch(0.922 0 0)",
+          "input": "oklch(0.922 0 0)",
+          "ring": "oklch(0.708 0 0)",
+          "radius": "0.625rem"
+        },
+        "dark": {
+          "background": "oklch(0.145 0 0)",
+          "foreground": "oklch(0.985 0 0)",
+          "card": "oklch(0.205 0 0)",
+          "card-foreground": "oklch(0.985 0 0)",
+          "popover": "oklch(0.205 0 0)",
+          "popover-foreground": "oklch(0.985 0 0)",
+          "primary": "oklch(0.922 0 0)",
+          "primary-foreground": "oklch(0.205 0 0)",
+          "secondary": "oklch(0.269 0 0)",
+          "secondary-foreground": "oklch(0.985 0 0)",
+          "muted": "oklch(0.269 0 0)",
+          "muted-foreground": "oklch(0.708 0 0)",
+          "accent": "oklch(0.269 0 0)",
+          "accent-foreground": "oklch(0.985 0 0)",
+          "destructive": "oklch(0.704 0.191 22.216)",
+          "border": "oklch(1 0 0 / 10%)",
+          "input": "oklch(1 0 0 / 15%)",
+          "ring": "oklch(0.556 0 0)",
+          "radius": "0.625rem"
+        }
+      }
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "theme-example",
+      "type": "registry:theme",
+      "title": "theme preset の例 (案件差分)",
+      "description": "base の上に案件のブランド差分 (accent 色等) だけを重ねる preset の雛形。base を取り込んだ後に add する。値は例。",
+      "cssVars": {
+        "light": {
+          "primary": "oklch(0.62 0.19 45)",
+          "primary-foreground": "oklch(0.985 0 0)"
+        },
+        "dark": {
+          "primary": "oklch(0.70 0.17 45)",
+          "primary-foreground": "oklch(0.205 0 0)"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+name: registry-ci
+# PR 検証ゲート: registry.json が valid で、shadcn build が通ることを確認する。
+# main への配信は pages.yml が担当 (二重 build 回避のため push:main では走らせない)。
+on:
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: "10"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: registry.json が JSON として妥当か
+        run: node -e "JSON.parse(require('fs').readFileSync('registry.json','utf8')); console.log('registry.json OK')"
+      - name: shadcn build が通るか
+        run: |
+          pnpm dlx shadcn@latest build
+          test -f public/r/base.json

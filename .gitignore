@@ -1,0 +1,5 @@
+node_modules/
+# build 生成物 (Pages workflow が CI で生成 → デプロイ。コミットしない)
+public/
+*.log
+.DS_Store
