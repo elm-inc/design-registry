@@ -26,8 +26,20 @@ design-registry/
 
 | item | type | 役割 |
 |---|---|---|
-| `base` | `registry:theme` (`extends: "none"`) | 定常レギュレーション。OKLCH の CSS 変数 (light/dark) + radius。**これがレギュレーション本体** |
+| `base` | `registry:theme` (`extends: "none"`) | 定常レギュレーション本体。色 + 型 + 余白 + sidebar 寸法 + 要素既定スタイル (下記) |
 | `theme-example` | `registry:theme` | 案件差分 (accent 色等) を base の上に重ねる preset の雛形 |
+
+### base が定義するレギュレーション (`add @elm/base` で全案件に配布)
+
+| 分類 | 中身 |
+|---|---|
+| **色** | OKLCH の CSS 変数 light/dark フルセット + chart-1..5 + sidebar-*。由来: preset b1ZOy0qg4 (indigo/zinc) |
+| **型 (見出し/本文)** | `--text-display/h1..h4/body/small`・`--leading-*`・`--tracking-*` を `@theme` に。`text-h1` 等のユーティリティも生成 |
+| **要素既定** (`css` = `@layer base`) | `h1..h4 / p / small` にトークンを適用。**案件で px 指定しなくても見出し/本文が揃う** |
+| **余白/レイアウト** | `--gutter` (1.5rem)・`--section-gap` (4rem)・`--page-max` (80rem) |
+| **サイドメニュー** | `--sidebar-width` (16rem)・`--sidebar-width-icon` (3rem)・`--sidebar-width-mobile` (18rem)。骨格コンポーネント `@elm/app-shell` は将来追加 |
+
+`--gutter` 等の layout 値と sidebar 寸法は raw トークン (var 参照)。実レイアウト骨格は今後 `registry:component` (`@elm/app-shell`) で配布予定。**性格 (余白リズムの詰め/抜き・見出しの個性)** は design-voice 層で足す。
 
 ## 案件側の使い方 (差分だけ)
 

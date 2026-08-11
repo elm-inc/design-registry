@@ -9,10 +9,29 @@
       "type": "registry:theme",
       "extends": "none",
       "title": "elm base",
-      "description": "elm の定常デザインレギュレーション (トークン層)。OKLCH の CSS 変数 (light/dark) + radius を単一ソースとして配布する。案件はこれを必ず取り込み、差分だけを theme preset で重ねる。由来: shadcn/create preset b1ZOy0qg4 (theme=indigo / baseColor=zinc / radius=default)。characterful な typography・layout・motion は design-voice 層で足す。",
+      "description": "elm の定常デザインレギュレーション。色トークン (OKLCH light/dark) + type scale (見出し/本文) + spacing/layout トークン + sidebar 寸法 + @layer base の要素既定スタイルを単一ソースで配布。案件は add @elm/base で型/余白/見出しが揃い、差分だけを preset で重ねる。色由来: shadcn/create preset b1ZOy0qg4 (indigo/zinc)。characterful な性格は design-voice 層で足す。",
       "cssVars": {
         "theme": {
-          "font-sans": "Inter, ui-sans-serif, system-ui, sans-serif"
+          "font-sans": "Inter, ui-sans-serif, system-ui, sans-serif",
+          "text-display": "3rem",
+          "text-h1": "2.25rem",
+          "text-h2": "1.875rem",
+          "text-h3": "1.5rem",
+          "text-h4": "1.25rem",
+          "text-body": "1rem",
+          "text-small": "0.875rem",
+          "leading-tight": "1.15",
+          "leading-snug": "1.3",
+          "leading-normal": "1.6",
+          "tracking-tight": "-0.02em",
+          "tracking-snug": "-0.01em",
+          "tracking-normal": "0em",
+          "gutter": "1.5rem",
+          "section-gap": "4rem",
+          "page-max": "80rem",
+          "sidebar-width": "16rem",
+          "sidebar-width-icon": "3rem",
+          "sidebar-width-mobile": "18rem"
         },
         "light": {
           "background": "oklch(1 0 0)",
@@ -81,6 +100,41 @@
           "sidebar-accent-foreground": "oklch(0.985 0 0)",
           "sidebar-border": "oklch(1 0 0 / 10%)",
           "sidebar-ring": "oklch(0.552 0.016 285.938)"
+        }
+      },
+      "css": {
+        "@layer base": {
+          "h1": {
+            "font-size": "var(--text-h1)",
+            "line-height": "var(--leading-tight)",
+            "letter-spacing": "var(--tracking-tight)",
+            "font-weight": "700"
+          },
+          "h2": {
+            "font-size": "var(--text-h2)",
+            "line-height": "var(--leading-tight)",
+            "letter-spacing": "var(--tracking-snug)",
+            "font-weight": "700"
+          },
+          "h3": {
+            "font-size": "var(--text-h3)",
+            "line-height": "var(--leading-snug)",
+            "letter-spacing": "var(--tracking-snug)",
+            "font-weight": "600"
+          },
+          "h4": {
+            "font-size": "var(--text-h4)",
+            "line-height": "var(--leading-snug)",
+            "font-weight": "600"
+          },
+          "p": {
+            "font-size": "var(--text-body)",
+            "line-height": "var(--leading-normal)"
+          },
+          "small": {
+            "font-size": "var(--text-small)",
+            "line-height": "var(--leading-snug)"
+          }
         }
       }
     },
