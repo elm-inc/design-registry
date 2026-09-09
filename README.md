@@ -28,6 +28,7 @@ design-registry/
 |---|---|---|
 | `base` | `registry:theme` (`extends: "none"`) | 定常レギュレーション本体。色 + 型 + 余白 + sidebar 寸法 + 要素既定スタイル (下記) |
 | `app-shell` | `registry:component` | house 標準レイアウト骨格 (sidebar + header + content)。Next.js App Router 想定。base のトークンを使用 |
+| `shell` | `registry:component` | 画面の共通部品。`Panel` / `Stat` / `Bar` / `Empty` / `Dl` / `PageHeader`。shadcn primitives の**組み合わせ方**だけを共有し、ドメインの語彙は案件側で包む |
 | `theme-example` | `registry:theme` | 案件差分 (accent 色等) を base の上に重ねる preset の雛形 |
 
 ### base が定義するレギュレーション (`add @elm/base` で全案件に配布)
