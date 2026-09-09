@@ -190,6 +190,28 @@
     },
     {
       "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "shell",
+      "type": "registry:component",
+      "title": "elm shell (画面の共通部品)",
+      "description": "shadcn primitives の上に house の組み合わせ方を薄く重ねた共通部品。Panel (見出し付きブロック) / Stat (指標) / Bar (量の横バー) / Empty (値が無いことを空欄にしない) / Dl (ラベルと値の対) / PageHeader (eyebrow・見出し・説明・操作)。案件をまたいで同じ読み方になるよう、組み合わせ方だけを共有し、ドメインの語彙は案件側のコンポーネントで包む。@elm/base のトークンを使用し、量の可視化は chart トークンから着色する。",
+      "registryDependencies": [
+        "card",
+        "tooltip",
+        "@elm/base"
+      ],
+      "files": [
+        {
+          "path": "components/shell.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/page-header.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
       "name": "theme-example",
       "type": "registry:theme",
       "title": "theme preset の例 (案件差分)",
