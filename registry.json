@@ -31,7 +31,16 @@
           "page-max": "80rem",
           "app-sidebar-width": "16rem",
           "app-sidebar-width-icon": "3rem",
-          "app-sidebar-width-mobile": "18rem"
+          "app-sidebar-width-mobile": "18rem",
+          "spacing-2xs": "0.25rem",
+          "spacing-xs": "0.5rem",
+          "spacing-sm": "0.75rem",
+          "spacing-md": "1rem",
+          "spacing-lg": "1.5rem",
+          "spacing-xl": "2rem",
+          "spacing-2xl": "3rem",
+          "spacing-3xl": "4rem",
+          "border-width": "1px"
         },
         "light": {
           "background": "oklch(1 0 0)",

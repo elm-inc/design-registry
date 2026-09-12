@@ -8,6 +8,11 @@ elm の **UI デザインレギュレーションの単一ソース**。[shadcn 
 
 > **base の由来**: shadcn/create preset [`b1ZOy0qg4`](https://ui.shadcn.com/create?preset=b1ZOy0qg4) (theme=indigo / baseColor=zinc / radius=default) を `shadcn apply` で OKLCH に解決し、`base.cssVars` (色フルセット + chart/sidebar + radius) に単一ソース化。characterful な typography・layout・motion は **design-voice 層**で足す (下記「house-style の作り込み」)。
 
+> ⚠ **`registry.json` は生成物です。手で編集しないでください。**
+> 正典は [`elm-inc/design-system-platform`](https://github.com/elm-inc/design-system-platform) の `tokens/` (DTCG) で、
+> このファイルは `dsp emit shadcn` の出力です。変更は正典側に入れてください
+> (根拠: design-system-platform の `docs/adr/0001-dtcg-token-canon-and-surface-adapters.md`)。
+
 ## 構成
 
 ```
@@ -39,6 +44,8 @@ design-registry/
 | **型 (見出し/本文)** | `--text-display/h1..h4/body/small`・`--leading-*`・`--tracking-*` を `@theme` に。`text-h1` 等のユーティリティも生成 |
 | **要素既定** (`css` = `@layer base`) | `h1..h4 / p / small` にトークンを適用。**案件で px 指定しなくても見出し/本文が揃う** |
 | **余白/レイアウト** | `--gutter` (1.5rem)・`--section-gap` (4rem)・`--page-max` (80rem) |
+| **余白の段階** | `--spacing-2xs`(0.25rem) / `xs`(0.5) / `sm`(0.75) / `md`(1) / `lg`(1.5) / `xl`(2) / `2xl`(3) / `3xl`(4)。Tailwind の名前空間なので `p-md` / `gap-lg` が生成され、既定の `p-4` とも共存する。`--gutter` は `lg`、`--section-gap` は `3xl` の別名 |
+| **境界線** | `--border-width` (1px)。案件は `border: var(--border-width) solid var(--border)` と書く |
 | **サイドメニュー** | `--app-sidebar-width` (16rem)・`--app-sidebar-width-icon` (3rem)・`--app-sidebar-width-mobile` (18rem)。骨格は `@elm/app-shell` (下記) が消費 |
 
 `--gutter` 等の layout 値と sidebar 寸法は raw トークン (var 参照)。sidebar 寸法だけ `--app-sidebar-*` と別名なのは、shadcn の `SidebarProvider` が同名 `--sidebar-width` をインライン上書きするため (app-shell が別名トークンから provider に流し込む)。**性格 (余白リズムの詰め/抜き・見出しの個性)** は design-voice 層で足す。
