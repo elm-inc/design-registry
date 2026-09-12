@@ -91,9 +91,9 @@ export function Bar({ pct }: { pct: number }) {
 export function Empty({ reason }: { reason: string }) {
   return (
     <Tooltip>
-      <TooltipTrigger
-        render={<span className="text-muted-foreground/60 cursor-help">—</span>}
-      />
+      <TooltipTrigger asChild>
+        <span className="text-muted-foreground/60 cursor-help">—</span>
+      </TooltipTrigger>
       <TooltipContent className="max-w-72">{reason}</TooltipContent>
     </Tooltip>
   )
